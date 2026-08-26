@@ -8,6 +8,7 @@ type Student = {
   id: string;
   nis: string;
   nama: string;
+  nomor_hp: string;
   kelas: string;
 };
 
@@ -25,6 +26,7 @@ export default function Home() {
 
     if (error) {
       console.error(error);
+      setLoading(false);
       return;
     }
 
@@ -45,7 +47,10 @@ export default function Home() {
 
     const supabase = createClient();
 
-    const { error } = await supabase.from("students").delete().eq("id", id);
+    const { error } = await supabase
+      .from("students")
+      .delete()
+      .eq("id", id);
 
     if (error) {
       alert("Gagal menghapus data");
@@ -60,12 +65,14 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-100 p-8">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Data Siswa</h1>
 
-            <p className="mt-1 text-gray-600">CRUD Next.js + Supabase</p>
+            <p className="mt-1 text-gray-600">
+              CRUD Next.js + Supabase
+            </p>
           </div>
 
           <Link
@@ -91,6 +98,8 @@ export default function Home() {
 
                   <th className="p-4 text-left">Nama</th>
 
+                  <th className="p-4 text-left">Nomor HP</th>
+
                   <th className="p-4 text-left">Kelas</th>
 
                   <th className="p-4 text-center">Aksi</th>
@@ -103,6 +112,10 @@ export default function Home() {
                     <td className="p-4">{student.nis}</td>
 
                     <td className="p-4">{student.nama}</td>
+
+                    <td className="p-4">
+                      {student.nomor_hp || "-"}
+                    </td>
 
                     <td className="p-4">{student.kelas}</td>
 
