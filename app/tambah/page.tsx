@@ -11,6 +11,7 @@ export default function TambahSiswa() {
   const [nis, setNis] = useState("");
   const [nama, setNama] = useState("");
   const [kelas, setKelas] = useState("");
+  const [nomorHp, setNomorHp] = useState("");
 
   const [loading, setLoading] = useState(false);
 
@@ -30,6 +31,7 @@ export default function TambahSiswa() {
       nis,
       nama,
       kelas,
+      nomor_hp: nomorHp,
     });
 
     if (error) {
@@ -91,6 +93,18 @@ export default function TambahSiswa() {
                 onChange={(e) => setKelas(e.target.value)}
                 className="w-full rounded-lg border p-3 outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Contoh: XI RPL 1"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block font-medium">Nomor HP</label>
+
+              <input
+                type="text"
+                value={nomorHp}
+                onChange={(e) => setNomorHp(e.target.value)}
+                className="w-full rounded-lg border p-3 outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Contoh: 08123456789"
               />
             </div>
 

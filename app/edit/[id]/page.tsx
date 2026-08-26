@@ -10,6 +10,7 @@ type Student = {
   nis: string;
   nama: string;
   kelas: string;
+  nomor_hp?: string;
 };
 
 export default function EditSiswa() {
@@ -23,6 +24,7 @@ export default function EditSiswa() {
   const [nis, setNis] = useState("");
   const [nama, setNama] = useState("");
   const [kelas, setKelas] = useState("");
+  const [nomorHp, setNomorHp] = useState("");
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -52,6 +54,7 @@ export default function EditSiswa() {
     setNis(data.nis);
     setNama(data.nama);
     setKelas(data.kelas);
+    setNomorHp(data.nomor_hp || "");
 
     setLoading(false);
   }
@@ -74,6 +77,7 @@ export default function EditSiswa() {
         nis,
         nama,
         kelas,
+        nomor_hp: nomorHp,
       })
       .eq("id", id);
 
@@ -176,6 +180,20 @@ export default function EditSiswa() {
                 onChange={(e) => setKelas(e.target.value)}
                 className="w-full rounded-lg border border-gray-300 bg-white p-3 text-gray-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 placeholder="Contoh: XI RPL 1"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block font-medium text-gray-700">
+                Nomor HP
+              </label>
+
+              <input
+                type="text"
+                value={nomorHp}
+                onChange={(e) => setNomorHp(e.target.value)}
+                className="w-full rounded-lg border border-gray-300 bg-white p-3 text-gray-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                placeholder="Contoh: 08123456789"
               />
             </div>
 
